@@ -1,0 +1,74 @@
+# Description:
+
+MeT is a  Cloud-enabled framework that can be used alone or in conjunction with OpenStack for the automatic and heterogeneous reconfiguration of HBase.
+MeT is an workload aware system that provides automatic elasticity for the HBase NoSQL database.
+MeT not only adds and removes nodes automatically and according to system load, but also reconfigures them according to the observed workloads.
+As a result, it achieves a significant increase in overall system performance.
+
+# About: 
+
+The current version of MeT is ready to work with HBase and OpenStack.
+
+# Requirements
+
+## Java
+    MeT has a Java module to bridge MeT and HBase.
+    Such module has the following dependencies:
+        - commons-configuration-1.6.jar
+        - commons-lang-2.5.jar
+        - commons-logging-1.1.1.jar
+        - hadoop-core-1.0.1.jar
+        - hbase-0.92.0-cdh4b1.jar
+        - log4j-1.2.15.jar
+        - py4j0.7.jar
+        - slf4j-api-1.6.1.jar
+        - slf4j-log4j12-1.6.1.jar
+        - zookeeper-3.4.1-cdh4b1.jar
+  
+## Python
+    MeT is mainly implemented in Python.
+    The following dependencies must be installed:
+        - paramiko
+        - py4j
+        - novaclient.v1_1 (OpenStack Client)
+
+
+
+# Build
+
+Just compile the JMeTGlue.java class.
+No need for extra build work.
+
+# Configuration 
+
+Folder 'config' holds a set of configuration files.
+Folder 'tmp' holds hbase configuration files that MeT uses and copies to the actual running machines.
+These should be the only places where you would need to tune MeT.
+
+# Usage
+
+1. Run Java Gateway (JMeTGlue)
+
+2. ./runner.sh (Please check if 'runner.sh' is considering the right py4j and paramiko paths)
+
+
+# Feedback
+
+Updated source and an issue tracker are available at:
+	
+	https://github.com/fmaia/MeT
+
+Your feedback is welcome.
+
+#Contact
+
+Francisco Cruz (<fmcruz@di.uminho.pt>)
+
+Francisco Maia (<fmaia@di.uminho.pt>)
+
+Miguel Matos (<miguelmatos@di.uminho.pt>)
+
+Ricardo Vilaça (<rmvilaca@di.uminho.pt>)
+
+Joao Paulo (<jtpaulo@di.uminho.pt>)
+

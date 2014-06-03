@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ * Copyright 2010 The Apache Software Foundation
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration>
+ <property>
+
+  <name>hbase.rootdir</name>
+	<value>hdfs://10.0.108.3:8020/hbase</value>
+        <!--<value>hdfs://cloud04.cluster.lsd.di.uminho.pt:8020/hbase</value>-->
+        <description>The directory shared by region servers.</description>
+
+</property>
+ <property>
+   <name>hbase.cluster.distributed</name>
+   <value>true</value>
+ </property>
+ <property>
+    <name>hbase.zookeeper.quorum</name>
+     <value>10.0.108.3</value>
+    <!--<value>cloud04.cluster.lsd.di.uminho.pt</value>--> 
+ </property>
+ <property>
+  <name>hbase.coprocessor.region.classes</name>
+  <value>org.apache.derby.impl.store.tuplestore.util.Coprocessor.StatisticsEndpoint</value>
+ </property>
+   <!-- experiments -->
+		<property>
+			        <name>hbase.regionserver.handler.count</name>
+			        <value>100</value>
+		      </property>
+<property>
+			        <name> hbase.hregion.memstore.mslab.enabled</name>
+			        <value>true</value>
+		      </property>
+<property>
+    <name>hfile.block.cache.size</name>
+    <value>0.55</value> 
+    <description>
+        Percentage of maximum heap (-Xmx setting) to allocate to block cache
+        used by HFile/StoreFile. Default of 0.25 means allocate 25%.
+        Set to 0 to disable but it's not recommended.
+    </description>
+</property>
+  <property>
+    <name>hbase.regionserver.global.memstore.upperLimit</name>
+    <value>0.1</value>
+    <description>Maximum size of all memstores in a region server before new
+      updates are blocked and flushes are forced. Defaults to 40% of heap
+    </description>
+  </property>
+  <property>
+    <name>hbase.regionserver.global.memstore.lowerLimit</name>
+    <value>0.07</value>
+    <description>When memstores are being forced to flush to make room in
+      memory, keep flushing until we hit this mark. Defaults to 35% of heap.
+      This value equal to hbase.regionserver.global.memstore.upperLimit causes
+      the minimum possible flushing to occur when updates are blocked due to
+      memstore limiting.
+    </description>
+  </property>
+  <property>
+    <name>hbase.client.scanner.caching</name>
+    <value>100</value>
+    <description>Number of rows that will be fetched when calling next
+    on a scanner if it is not served from (local, client) memory. Higher
+    caching values will enable faster scanners but will eat up more memory
+    and some calls of next may take longer and longer times when the cache is empty.
+    Do not set this value such that the time between invocations is greater
+    than the scanner timeout; i.e. hbase.regionserver.lease.period
+    </description>
+  </property> 
+  <property>
+    <name>hbase.hregion.max.filesize</name>
+     <value>53687091200</value> 
+<!--    <value>53687091200</value> -->
+<!--    <value>1073741824</value> -->
+    <description>
+    Maximum HStoreFile size. If any one of a column families' HStoreFiles has
+    grown to exceed this value, the hosting HRegion is split in two.
+    Default: 1G.NOW: 512MB
+    </description>
+  </property>
+  <property>
+        <name>zookeeper.session.timeout</name>
+        <value>1200000</value>
+  </property>
+  <property>
+        <name>hbase.zookeeper.property.tickTime</name>
+        <value>6000</value>
+  </property>
+<!--<property>
+    <name>hbase.hregion.memstore.flush.size</name>
+    <value>268435456</value>
+    <description>
+    Memstore will be flushed to disk if size of the memstore
+    exceeds this number of bytes.  Value is checked by a thread that runs0,4
+    every hbase.server.thread.wakefrequency.
+    </description>
+</property>
+-->
+</configuration>
